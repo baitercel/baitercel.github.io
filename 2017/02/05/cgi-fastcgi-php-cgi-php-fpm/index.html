@@ -106,7 +106,7 @@ FastCgi  像是一个常驻型的Cgi，它可以一直执行这，只要激活�
 
 FastCgi
 FastCgi  像是一个常驻型的Cgi，它可以一直执行这，只要激活后，不需要每次去fork一次，还支持分布式运算，即FastCgi程序可以在网站服务器以外的主机上执行并且接受">
-<meta property="og:updated_time" content="2017-02-05T01:02:30.692Z">
+<meta property="og:updated_time" content="2017-02-05T03:20:47.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cgi、fastcgi、php-cgi、php-fpm剖析">
 <meta name="twitter:description" content="定义cgi
@@ -416,10 +416,8 @@ FastCgi  像是一个常驻型的Cgi，它可以一直执行这，只要激活�
 <h3 id="php-cgi-1"><a href="#php-cgi-1" class="headerlink" title="php-cgi"></a><code>php-cgi</code></h3><p>启动php，指定启动的worker  ，长期驻留在内存里 ，用户访问php文件， php-cgi 处理请求，返回结果</p>
 <h3 id="php-fpm-1"><a href="#php-fpm-1" class="headerlink" title="php-fpm"></a><code>php-fpm</code></h3><p>启动php，动态指定启动的worker  ，长期驻留在内存里 ，根据来访压力动态增减worker的进程数量，用户访问php文件， php-fpm 处理请求，返回结果</p>
 <h1 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h1><ul>
-<li>cgi是最初始的网关接口，随着互联网的发展，大量的请求，衍生而来很多的问题，fastCgi开始出现了，取代了cgi技术<ul>
+<li>cgi是最初始的网关接口，随着互联网的发展，大量的请求，衍生而来很多的问题，fastCgi开始出现了，取代了cgi技术</li>
 <li>php是动态脚本语言 , php5.3以前  用php-cgi 来实现 fastCgi  web请求，php 5.4开始，php-fpm 取代了php-cgi ，主要原因是 不能平滑重启php ,内存不能进行动态分配</li>
-</ul>
-</li>
 </ul>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>上面所说都是我总结的，出于我的理解，大家如果有质疑欢迎和我进行沟通</p>
 
