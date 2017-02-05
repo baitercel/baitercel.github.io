@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="魔方," />
+  <meta name="keywords" content="PHP,cgi,fastcgi,php-cgi,php-fpm," />
 
 
 
@@ -84,19 +84,40 @@
 
 
 
-<meta name="description" content="三阶魔方我初玩魔方是想教我的小侄子，才自学的魔方然后教给他，后来发现自己深深喜欢上了魔方。教程 我是直接找的教程，如果自己琢磨，自己研究完成的话，估计要很久，而且也没有那个耐性，所以直接百度教程，魔方小站，就好了，（题外话，魔方小站的站长周博是清华大学物理系的硕士，很牛的一个人），里面有很多的教程。
-初级玩法最简单的初级玩法就是层先法，1层、2层、3层这样，我最开始学的就是这个，半天就学会了，不过">
+<meta name="description" content="定义cgi
+通用网关接口，外部程序与web服务器之间的接口标准，是在cgi程序和web服务器之间传递信息的过程
+
+每一次请求都会生成一个cgi进程，cgi程序执行完，进程退出
+
+独立于服务器、独立编程语言
+
+FastCgi
+FastCgi  像是一个常驻型的Cgi，它可以一直执行这，只要激活后，不需要每次去fork一次，还支持分布式运算，即FastCgi程序可以在网站服务器以外的主机上执行并且接受">
 <meta property="og:type" content="article">
-<meta property="og:title" content="三阶魔方试炼总结">
-<meta property="og:url" content="http://yoursite.com/2017/01/31/三阶魔方试炼总结/index.html">
+<meta property="og:title" content="cgi、fastcgi、php-cgi、php-fpm剖析">
+<meta property="og:url" content="http://yoursite.com/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/index.html">
 <meta property="og:site_name" content="张翠山的博客">
-<meta property="og:description" content="三阶魔方我初玩魔方是想教我的小侄子，才自学的魔方然后教给他，后来发现自己深深喜欢上了魔方。教程 我是直接找的教程，如果自己琢磨，自己研究完成的话，估计要很久，而且也没有那个耐性，所以直接百度教程，魔方小站，就好了，（题外话，魔方小站的站长周博是清华大学物理系的硕士，很牛的一个人），里面有很多的教程。
-初级玩法最简单的初级玩法就是层先法，1层、2层、3层这样，我最开始学的就是这个，半天就学会了，不过">
-<meta property="og:updated_time" content="2017-02-03T20:30:29.196Z">
+<meta property="og:description" content="定义cgi
+通用网关接口，外部程序与web服务器之间的接口标准，是在cgi程序和web服务器之间传递信息的过程
+
+每一次请求都会生成一个cgi进程，cgi程序执行完，进程退出
+
+独立于服务器、独立编程语言
+
+FastCgi
+FastCgi  像是一个常驻型的Cgi，它可以一直执行这，只要激活后，不需要每次去fork一次，还支持分布式运算，即FastCgi程序可以在网站服务器以外的主机上执行并且接受">
+<meta property="og:updated_time" content="2017-02-05T01:02:30.692Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三阶魔方试炼总结">
-<meta name="twitter:description" content="三阶魔方我初玩魔方是想教我的小侄子，才自学的魔方然后教给他，后来发现自己深深喜欢上了魔方。教程 我是直接找的教程，如果自己琢磨，自己研究完成的话，估计要很久，而且也没有那个耐性，所以直接百度教程，魔方小站，就好了，（题外话，魔方小站的站长周博是清华大学物理系的硕士，很牛的一个人），里面有很多的教程。
-初级玩法最简单的初级玩法就是层先法，1层、2层、3层这样，我最开始学的就是这个，半天就学会了，不过">
+<meta name="twitter:title" content="cgi、fastcgi、php-cgi、php-fpm剖析">
+<meta name="twitter:description" content="定义cgi
+通用网关接口，外部程序与web服务器之间的接口标准，是在cgi程序和web服务器之间传递信息的过程
+
+每一次请求都会生成一个cgi进程，cgi程序执行完，进程退出
+
+独立于服务器、独立编程语言
+
+FastCgi
+FastCgi  像是一个常驻型的Cgi，它可以一直执行这，只要激活后，不需要每次去fork一次，还支持分布式运算，即FastCgi程序可以在网站服务器以外的主机上执行并且接受">
 
 
 
@@ -124,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/31/三阶魔方试炼总结/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/"/>
 
 
 
 
 
-  <title> 三阶魔方试炼总结 | 张翠山的博客 </title>
+  <title> cgi、fastcgi、php-cgi、php-fpm剖析 | 张翠山的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +282,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/31/三阶魔方试炼总结/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="张翠山">
@@ -285,7 +306,7 @@
             
             
               
-                三阶魔方试炼总结
+                cgi、fastcgi、php-cgi、php-fpm剖析
               
             
           </h1>
@@ -298,8 +319,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-31T00:36:45+08:00">
-                2017-01-31
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-05T08:58:55+08:00">
+                2017-02-05
               </time>
             
 
@@ -317,8 +338,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/魔方/" itemprop="url" rel="index">
-                    <span itemprop="name">魔方</span>
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
                   </a>
                 </span>
 
@@ -332,8 +353,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/01/31/三阶魔方试炼总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/31/三阶魔方试炼总结/" itemprop="commentCount"></span>
+                <a href="/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/05/cgi-fastcgi-php-cgi-php-fpm/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -343,7 +364,7 @@
 
           
           
-             <span id="/2017/01/31/三阶魔方试炼总结/" class="leancloud_visitors" data-flag-title="三阶魔方试炼总结">
+             <span id="/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/" class="leancloud_visitors" data-flag-title="cgi、fastcgi、php-cgi、php-fpm剖析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -368,14 +389,39 @@
       
 
       
-        <p><code>三阶魔方</code>我初玩魔方是想教我的小侄子，才自学的魔方然后教给他，后来发现自己深深喜欢上了魔方。<code>教程</code> 我是直接找的教程，如果自己琢磨，自己研究完成的话，估计要很久，而且也没有那个耐性，所以直接百度教程，魔方小站，就好了，（题外话，魔方小站的站长周博是清华大学物理系的硕士，很牛的一个人），里面有很多的教程。</p>
-<h1 id="初级玩法"><a href="#初级玩法" class="headerlink" title="初级玩法"></a>初级玩法</h1><p>最简单的初级玩法就是层先法，1层、2层、3层这样，我最开始学的就是这个，半天就学会了，不过拼完用时是很慢的，忘了几分钟了，反正挺长的。小站站长讲解的很通俗易懂，方法我不过多的说了，直接打开魔方小站站长的网站就有了。</p>
-<h1 id="高级玩法"><a href="#高级玩法" class="headerlink" title="高级玩法"></a>高级玩法</h1><p>高级玩法就是CFOP了，大概几百个公式，一下学起来有点慢，小站站长写出了一个简版的CFOP，20多个公式吧，初学玩家，想进一步提升速度的话，可以先学习简版的CFOP然后再过渡到CFOP，学完简版的CFOP，并且熟练应用，魔方完成时间进入1分钟以内很容易的，然后就是CFOP 完整版，去魔方小站下载CFOP公式，然后然后公式表一个一个的练就好了。</p>
-<h1 id="实战演练"><a href="#实战演练" class="headerlink" title="实战演练"></a>实战演练</h1><p>我玩魔方断断续续的大概得有1年时间了，目前的水平也就是1分左右，1分钟的时间大部分浪费在了<code>F2L</code>上面了，我一般做<code>F2L</code>需要的时间大概是40秒，做完<code>F2L</code>然后到拼完大概用时20秒左右，接下来我会苦练<code>F2L</code>。我分享下我从一个14岁三阶13秒一个魔友那里交流来的教程，每天一个<code>F2L</code> ，两个<code>OLL</code> ，魔方打乱成公式的样子，然后再按照公式还原，一定要练的非常熟练。学习魔方是一个枯燥乏味的过程，学习久了肯定会厌烦的，厌烦的时候，可以换4阶玩玩，总之就是一个坚持的过程，一个肌肉记忆。</p>
-<h1 id="购买魔方"><a href="#购买魔方" class="headerlink" title="购买魔方"></a>购买魔方</h1><p>三阶魔方我有三个，两个普通的几块钱，一个贵的是75元，gan356Air，普通的魔方我就不说了，我说下gan356Air这个魔方，据说是比赛专用的魔方，买完魔方之后，千万别加油，我就是直接加油，导致油多特别黏，然后不得已买的酒精擦拭掉多余的油才好使的。买完之后都是厂家直接加油加好的。并不是油多就一定好。</p>
-<blockquote>
-<p><strong>总结：</strong>坚持！坚持！坚持！</p>
-</blockquote>
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><h3 id="cgi"><a href="#cgi" class="headerlink" title="cgi"></a><code>cgi</code></h3><ul>
+<li><p>通用网关接口，外部程序与web服务器之间的接口标准，是在cgi程序和web服务器之间传递信息的过程</p>
+</li>
+<li><p>每一次请求都会生成一个cgi进程，cgi程序执行完，进程退出</p>
+</li>
+<li>独立于服务器、独立编程语言</li>
+</ul>
+<h3 id="FastCgi"><a href="#FastCgi" class="headerlink" title="FastCgi"></a><code>FastCgi</code></h3><ul>
+<li>FastCgi  像是一个常驻型的Cgi，它可以一直执行这，只要激活后，不需要每次去fork一次，还支持分布式运算，即FastCgi程序可以在网站服务器以外的主机上执行并且接受来自其他网站服务器的请求</li>
+<li>可以同时处理多个请求</li>
+<li>长期占用内存</li>
+</ul>
+<h3 id="php-cgi"><a href="#php-cgi" class="headerlink" title="php-cgi"></a><code>php-cgi</code></h3><ul>
+<li>php官方自带的FastCGI  进程管理器</li>
+<li>php.ini修改之后，必须kill掉php-cgi再启动php.ini 才生效。不可以平滑的重启</li>
+<li>内存不能动态分配</li>
+</ul>
+<h3 id="php-fpm"><a href="#php-fpm" class="headerlink" title="php-fpm"></a><code>php-fpm</code></h3><ul>
+<li>非官方fastCgi进程管理器，后来php5.4开始，被官方收录了，编译php的时候只需要–enable-fpm 就可以开启php-fpm</li>
+<li>可以平滑重启php</li>
+<li>动态调度进程</li>
+</ul>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h3 id="cgi-1"><a href="#cgi-1" class="headerlink" title="cgi"></a><code>cgi</code></h3><p>以apache为例，首先要配置好cgi访问目录，访问 <a href="http://127.0.0.1/cgi-bin/printenv.pl" target="_blank" rel="external">http://127.0.0.1/cgi-bin/printenv.pl</a> 。<br>apache收到用户请求，开始调用cgi接口，处理cgi程序（printenv.pl），处理完了之后返回 cgi程序处理后的结果。<br>说一下我走过的一个坑，为了验证cgi程序，我特意编译了apache2.4 ，然后配置httpd.conf  但是访问cgi程序还是报错。主要原因就是。cgi文件，没有加上调用哪个程序执行  。 这样的语句， “#!/bin/sh”   ，加上之后就可以正常的返回了  </p>
+<h3 id="fastCgi"><a href="#fastCgi" class="headerlink" title="fastCgi"></a><code>fastCgi</code></h3><p>本来我想用apache 实现 fastcgi 有两种方式，一种是mod_fcgid 模块（官方模块），还有一种是mod_fastcgi 模块（外部模块），两种方式我都试着安装了一下，但是都没有安装成功。都打不开链接了<br>我的理解是，web服务器启动，自动启动fastCgi模块    并且长期驻留在内存里, 用户访问 fastCgi程序，开启的fastCgi模块 ，直接处理请求，并返回结果.</p>
+<h3 id="php-cgi-1"><a href="#php-cgi-1" class="headerlink" title="php-cgi"></a><code>php-cgi</code></h3><p>启动php，指定启动的worker  ，长期驻留在内存里 ，用户访问php文件， php-cgi 处理请求，返回结果</p>
+<h3 id="php-fpm-1"><a href="#php-fpm-1" class="headerlink" title="php-fpm"></a><code>php-fpm</code></h3><p>启动php，动态指定启动的worker  ，长期驻留在内存里 ，根据来访压力动态增减worker的进程数量，用户访问php文件， php-fpm 处理请求，返回结果</p>
+<h1 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h1><ul>
+<li>cgi是最初始的网关接口，随着互联网的发展，大量的请求，衍生而来很多的问题，fastCgi开始出现了，取代了cgi技术<ul>
+<li>php是动态脚本语言 , php5.3以前  用php-cgi 来实现 fastCgi  web请求，php 5.4开始，php-fpm 取代了php-cgi ，主要原因是 不能平滑重启php ,内存不能进行动态分配</li>
+</ul>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>上面所说都是我总结的，出于我的理解，大家如果有质疑欢迎和我进行沟通</p>
 
       
     </div>
@@ -420,7 +466,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/魔方/" rel="tag"># 魔方</a>
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/cgi/" rel="tag"># cgi</a>
+          
+            <a href="/tags/fastcgi/" rel="tag"># fastcgi</a>
+          
+            <a href="/tags/php-cgi/" rel="tag"># php-cgi</a>
+          
+            <a href="/tags/php-fpm/" rel="tag"># php-fpm</a>
           
         </div>
       
@@ -429,8 +483,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/29/风雨哈弗路-读后感/" rel="next" title="风雨哈弗路-读后感">
-                <i class="fa fa-chevron-left"></i> 风雨哈弗路-读后感
+              <a href="/2017/01/31/三阶魔方试炼总结/" rel="next" title="三阶魔方试炼总结">
+                <i class="fa fa-chevron-left"></i> 三阶魔方试炼总结
               </a>
             
           </div>
@@ -438,10 +492,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/" rel="prev" title="cgi、fastcgi、php-cgi、php-fpm剖析">
-                cgi、fastcgi、php-cgi、php-fpm剖析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -467,8 +517,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/31/三阶魔方试炼总结/"
-           data-title="三阶魔方试炼总结" data-url="http://yoursite.com/2017/01/31/三阶魔方试炼总结/">
+      <div class="ds-thread" data-thread-key="2017/02/05/cgi-fastcgi-php-cgi-php-fpm/"
+           data-title="cgi、fastcgi、php-cgi、php-fpm剖析" data-url="http://yoursite.com/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/">
       </div>
     
   </div>
@@ -565,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初级玩法"><span class="nav-number">1.</span> <span class="nav-text">初级玩法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级玩法"><span class="nav-number">2.</span> <span class="nav-text">高级玩法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实战演练"><span class="nav-number">3.</span> <span class="nav-text">实战演练</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#购买魔方"><span class="nav-number">4.</span> <span class="nav-text">购买魔方</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cgi"><span class="nav-number">1.0.1.</span> <span class="nav-text">cgi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FastCgi"><span class="nav-number">1.0.2.</span> <span class="nav-text">FastCgi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php-cgi"><span class="nav-number">1.0.3.</span> <span class="nav-text">php-cgi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php-fpm"><span class="nav-number">1.0.4.</span> <span class="nav-text">php-fpm</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cgi-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">cgi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fastCgi"><span class="nav-number">2.0.2.</span> <span class="nav-text">fastCgi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php-cgi-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">php-cgi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php-fpm-1"><span class="nav-number">2.0.4.</span> <span class="nav-text">php-fpm</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关系"><span class="nav-number">3.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

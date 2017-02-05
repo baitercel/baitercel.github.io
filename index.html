@@ -259,6 +259,189 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="张翠山">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://cuishan.win/uploads/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="张翠山的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="张翠山的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/" itemprop="url">
+                  cgi、fastcgi、php-cgi、php-fpm剖析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-05T08:58:55+08:00">
+                2017-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/05/cgi-fastcgi-php-cgi-php-fpm/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/05/cgi-fastcgi-php-cgi-php-fpm/" class="leancloud_visitors" data-flag-title="cgi、fastcgi、php-cgi、php-fpm剖析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><h3 id="cgi"><a href="#cgi" class="headerlink" title="cgi"></a><code>cgi</code></h3><ul>
+<li><p>通用网关接口，外部程序与web服务器之间的接口标准，是在cgi程序和web服务器之间传递信息的过程</p>
+</li>
+<li><p>每一次请求都会生成一个cgi进程，cgi程序执行完，进程退出</p>
+</li>
+<li>独立于服务器、独立编程语言</li>
+</ul>
+<h3 id="FastCgi"><a href="#FastCgi" class="headerlink" title="FastCgi"></a><code>FastCgi</code></h3><ul>
+<li>FastCgi  像是一个常驻型的Cgi，它可以一直执行这，只要激活后，不需要每次去fork一次，还支持分布式运算，即FastCgi程序可以在网站服务器以外的主机上执行并且接受来自其他网站服务器的请求</li>
+<li>可以同时处理多个请求</li>
+<li>长期占用内存</li>
+</ul>
+<h3 id="php-cgi"><a href="#php-cgi" class="headerlink" title="php-cgi"></a><code>php-cgi</code></h3><ul>
+<li>php官方自带的FastCGI  进程管理器</li>
+<li>php.ini修改之后，必须kill掉php-cgi再启动php.ini 才生效。不可以平滑的重启</li>
+<li>内存不能动态分配</li>
+</ul>
+<h3 id="php-fpm"><a href="#php-fpm" class="headerlink" title="php-fpm"></a><code>php-fpm</code></h3><ul>
+<li>非官方fastCgi进程管理器，后来php5.4开始，被官方收录了，编译php的时候只需要–enable-fpm 就可以开启php-fpm</li>
+<li>可以平滑重启php</li>
+<li>动态调度进程</li>
+</ul>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h3 id="cgi-1"><a href="#cgi-1" class="headerlink" title="cgi"></a><code>cgi</code></h3><p>以apache为例，首先要配置好cgi访问目录，访问 <a href="http://127.0.0.1/cgi-bin/printenv.pl" target="_blank" rel="external">http://127.0.0.1/cgi-bin/printenv.pl</a> 。<br>apache收到用户请求，开始调用cgi接口，处理cgi程序（printenv.pl），处理完了之后返回 cgi程序处理后的结果。<br>说一下我走过的一个坑，为了验证cgi程序，我特意编译了apache2.4 ，然后配置httpd.conf  但是访问cgi程序还是报错。主要原因就是。cgi文件，没有加上调用哪个程序执行  。 这样的语句， “#!/bin/sh”   ，加上之后就可以正常的返回了  </p>
+<h3 id="fastCgi"><a href="#fastCgi" class="headerlink" title="fastCgi"></a><code>fastCgi</code></h3><p>本来我想用apache 实现 fastcgi 有两种方式，一种是mod_fcgid 模块（官方模块），还有一种是mod_fastcgi 模块（外部模块），两种方式我都试着安装了一下，但是都没有安装成功。都打不开链接了<br>我的理解是，web服务器启动，自动启动fastCgi模块    并且长期驻留在内存里, 用户访问 fastCgi程序，开启的fastCgi模块 ，直接处理请求，并返回结果.</p>
+<h3 id="php-cgi-1"><a href="#php-cgi-1" class="headerlink" title="php-cgi"></a><code>php-cgi</code></h3><p>启动php，指定启动的worker  ，长期驻留在内存里 ，用户访问php文件， php-cgi 处理请求，返回结果</p>
+<h3 id="php-fpm-1"><a href="#php-fpm-1" class="headerlink" title="php-fpm"></a><code>php-fpm</code></h3><p>启动php，动态指定启动的worker  ，长期驻留在内存里 ，根据来访压力动态增减worker的进程数量，用户访问php文件， php-fpm 处理请求，返回结果</p>
+<h1 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h1><ul>
+<li>cgi是最初始的网关接口，随着互联网的发展，大量的请求，衍生而来很多的问题，fastCgi开始出现了，取代了cgi技术<ul>
+<li>php是动态脚本语言 , php5.3以前  用php-cgi 来实现 fastCgi  web请求，php 5.4开始，php-fpm 取代了php-cgi ，主要原因是 不能平滑重启php ,内存不能进行动态分配</li>
+</ul>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>上面所说都是我总结的，出于我的理解，大家如果有质疑欢迎和我进行沟通</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/31/三阶魔方试炼总结/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -613,7 +796,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -621,7 +804,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -630,7 +813,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
